@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [CalendarioController::class, 'index'])->name('calendario.index');
+Route::get('/informe', [CalendarioController::class, 'informe'])->name('calendario.informe');
 
-Route::get('/', function () {
-    return view('inicio.index');
-});
 
 Route::middleware([
     'auth:sanctum',

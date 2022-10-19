@@ -17,7 +17,9 @@ class CreateEventosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('mes');
             $table->date('fecha');
+            $table->enum('columna', [1, 2, 3]);
             $table->timestamps();
         });
     }

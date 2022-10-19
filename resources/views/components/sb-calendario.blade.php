@@ -3,7 +3,7 @@
     <x-calendario fontsize="fs-6" month="" tipo="sb" />
     <x-cab1 texto="Control horario" />
     <ul>
-        <li><a href="{{ url("/horario/".date($fecha4['date'])) }}">{{$fecha4['nombre']}}</a></li>
+        <li><a href="{{ route('calendario.informe') }}">{{$fecha4['nombre']}}</a></li>
         <li><a href="{{ url("/horario/".date($fecha3['date'])) }}">{{$fecha3['nombre']}}</a></li>
         <li><a href="{{ url("/horario") }}">{{$fecha['nombre']}}</a></li>
     </ul>
