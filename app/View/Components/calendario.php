@@ -13,7 +13,7 @@ class calendario extends Component
     public $datos;
     public $semanas;
     public $fontsize;
-    public $color;  
+    public $color;
     public $fondo;
     /**
      * Create a new component instance.
@@ -28,7 +28,7 @@ class calendario extends Component
         // obtener mes en espanol
         $mespanish = $this->spanish_month($mes);
         $mes = $datos['month'];
-        
+
         $this->mespanish = $mespanish;
         $this->mes = $mes;
         $this->month = $month;
@@ -45,7 +45,7 @@ class calendario extends Component
         // obtener mes en espanol
         $mespanish = $this->spanish_month($mes);
         $mes = $datos['month'];
-      
+
 
         $this->mespanish = $mespanish;
         $this->mes = $mes;
@@ -66,7 +66,7 @@ class calendario extends Component
 
         $daysmonth2  =  date("d", strtotime($daylast));
         //echo "<h2>Ultimo dia: ".$daysmonth2."</h2>";
-        
+
         //sumamos ultimo fia y los ultimos del mes anterior que entran en la primera semana y dividimos por 7, nos
         // na el numero de semanas
         $montmonth  =  date("m", strtotime($fecha));
@@ -87,12 +87,12 @@ class calendario extends Component
 
         $nuevaFecha = $nuevaFecha - ($diaDeLaSemana*24*3600); //Restar los segundos totales de los dias transcurridos de la semana
         $dateini = date ("Y-m-d",$nuevaFecha);
-        
+
         //echo "<h2>dateini: ".$dateini."</h2>";
         //$dateini = date("Y-m-d",strtotime($dateini."+ 1 day"));
-        
-        
-        
+
+
+
         $semana = $totalsemanas;
         // semana todal del mes
         $datafecha = $dateini;
@@ -112,8 +112,9 @@ class calendario extends Component
               $diaDeLaSemana = date("w", strtotime($datafecha));
               //echo "<h2>Dia de la semana: ".$diaDeLaSemana."</h2>";
               //DIA ACTUAL
-              if ($datanew['dia'] == date("d")){$datanew['diaactual']='bg-warning';}else{$datanew['diaactual']="";}
+              if ($datanew['dia'] == date("d") && $datanew['mes']==date("M")){$datanew['diaactual']='bg-warning';}else{$datanew['diaactual']="";}
               //AGREGAR CONSULTAS EVENTO
+              //Domingos
               if ($diaDeLaSemana == 0){$datanew['festivo'] = "text-white bg-primary";}else{$datanew['festivo'] = "";}
               //if (Evento::where("fecha",$datafecha)->get()){$datanew['festivo2'] = "bg-warning";}else{$datanew['festivo2'] = "";}
               //echo "<h3>".$datanew['festivo2']."</h3>";

@@ -8,10 +8,18 @@ html, body, .main .row, .sidebar {
     margin-bottom: 0;
 }
 .sidebar {
-    padding: 0; 
-    border-right:1px solid #cccccc;          
+    padding: 0;
+    border-right:1px solid #cccccc;
 }
 
 td {
     color:#333333;
 }
+.nacional{
+    color: white;
+    background-color: #ce2905;
+ }
+ .local{
+    color: white;
+    background-color: #CA8400;
+ }

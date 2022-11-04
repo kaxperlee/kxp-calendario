@@ -2,24 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class CalendarioController extends Controller
 {
-    public function index($date="2023"){
-        $fecha = $date;
-        return view("calendario/index", compact('fecha'));
+    public function index(){
+
+        $fecha = date("Y");
+        $fiestas = Evento::where('ano',$fecha)->get();
+        //return "<h1>".$fecha."</h1>";
+        return view("calendario/index", compact('fecha','fiestas'));
+    }
+
+    public function show($fecha){
+
+        $fiestas = Evento::where('ano',$fecha)->get();
+
+        return view("calendario/index", compact('fecha','fiestas'));
     }
 
     public function informe(){
 
-        $fiestas = Evento::all();
         $fecha = "2023";
+        $fiestas = Evento::where('ano',$fecha)->get();
+
         $pdf = PDF::loadView('calendario.informe', compact('fecha','fiestas'));
         //return view("calendario/informe", compact('fecha'));
         return $pdf->download('CalendarioLaboral2023.pdf');
+    }
+
+    public function calendario($fecha){
+
+        $fiestas = Evento::where('ano',$fecha);
+        $ano = $fecha;
+        $pdf = PDF::loadView('calendario.informe', compact('ano','fiestas'));
+        //return view("calendario/informe", compact('fecha'));
+        return $pdf->download('CalendarioLaboral2023.pdf');
+    }
+
+    public function ftp(){
+
+        $files = Storage::disk('ftp')->allfiles();
+        dd($files);
+
+    }
+
+    public function empresas($fecha){
+        $empresas = Empresa::all();
+        $ano = $fecha;
+        return view("calendario/empresas", compact('empresas','ano'));
+    }
+
+    public function empresa($id,$fecha){
+        $empresa = Empresa::find($id);
+        $fiestas = Evento::where('Tipo','n')->orwhere('Tipo',$empresa->Localidad)->orwhere('Tipo',$empresa->Comunidad)->where('ano',$fecha)->get();
+        $fecha = $fecha;
+        $pdf = PDF::loadView('calendario.informe2', compact('fecha','fiestas','empresa'));
+        return $pdf->download('CalendarioLaboral2023.pdf');
+        //return view("calendario/empresa", compact('empresa','ano','fiestas'));
     }
 
 

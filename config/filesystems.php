@@ -56,6 +56,15 @@ return [
             'throw' => false,
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'garos-elx.synology.me',
+            'username' => 'kaxper',
+            'password' => 'Miloja1502?',
+            'root' => '/00354535J',
+
+        ],
+
     ],
 
     /*
