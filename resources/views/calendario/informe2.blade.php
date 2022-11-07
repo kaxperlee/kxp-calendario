@@ -23,7 +23,7 @@
                 <td style='text-align:left;width:5%'>Empresa:</td>
                 <td style='text-align:left;width:65%;border-bottom:1px solid #ccc'><strong>{{$empresa->Empresa}}</strong></td>
                 <td style='text-align:left;width:5%'>Localidad:</td>
-                <td style='text-align:left;width:25%;border-bottom:1px solid #ccc'>{{$empresa->Localidad}}</td>
+                <td style='text-align:left;width:25%;border-bottom:1px solid #ccc'>{{strtoupper($empresa->Localidad)}}</td>
             </tr>
             <tr>
                 <td colspan="1" style='text-align:left;width:5%'>Domicilio:</td>
@@ -90,8 +90,9 @@
         <table style='margin-top:20px;' width="100%">
             <tr>
                 <td width="75">Observaciones: </td>
-                <td style='text-align:right' width="25">{{$empresa->Localidad}}, a 1 de enero de 2023</td>
-        </tr>
+                <td style='text-align:right' width="25">{{$empresa->Localidad}}, a 1 de enero de {{$fecha}}</td>
+            </tr>
+            
         </table>
     </div>
 </body>

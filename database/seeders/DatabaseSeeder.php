@@ -343,5 +343,24 @@ class DatabaseSeeder extends Seeder
         $codigo->Localidad = "Elche";
         $codigo->Comunidad = "C.Valenciana";
         $codigo->save();
+        
+        $codigo = new Empresa();
+        $codigo->Empresa = "A.E.C. FERIAS S.L";
+        $codigo->Domicilio = "CL SEVERO OCHOA PARQUE IND TORRELLANO 42";
+        $codigo->Actividad = "ASOC. SIN ANIMO DE LUCRO";
+        $codigo->Convenio = "OFICINAS Y DESPACHOS";
+        $codigo->Localidad = "Elche";
+        $codigo->Comunidad = "C.Valenciana";
+        $codigo->save();
+
+        $codigo = new Empresa();
+        $codigo->Empresa = "ACROSSCAR S.L.U.";
+        $codigo->Domicilio = "Cl/ ALGEZAR, 9";
+        $codigo->Actividad = "FAB CARROCERIAS VEHICULOS";
+        $codigo->Convenio = "INDUSTRIA DE LA MADERA";
+        $codigo->Localidad = "Aspe";
+        $codigo->Comunidad = "C.Valenciana";
+        $codigo->save();
+
     }
 }

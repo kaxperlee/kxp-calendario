@@ -41,7 +41,7 @@ class CalendarioController extends Controller
         $ano = $fecha;
         $pdf = PDF::loadView('calendario.informe', compact('ano','fiestas'));
         //return view("calendario/informe", compact('fecha'));
-        return $pdf->download('CalendarioLaboral2023.pdf');
+        return $pdf->download($empresa->Empresa.'-'.$empresa->Centro.'.pdf');
     }
 
     public function ftp(){
@@ -59,10 +59,24 @@ class CalendarioController extends Controller
 
     public function empresa($id,$fecha){
         $empresa = Empresa::find($id);
-        $fiestas = Evento::where('Tipo','n')->orwhere('Tipo',$empresa->Localidad)->orwhere('Tipo',$empresa->Comunidad)->where('ano',$fecha)->get();
+        //$fiestas = Evento::where('Tipo','n')->orwhere('Tipo',$empresa->Localidad)->orwhere('Tipo',$empresa->Comunidad)->where('ano',$fecha)->get();
+        $fiestas = Evento::where('ano', '=', $fecha)
+        ->where(function ($query) use ($empresa) {
+            $query->where('Tipo', 'n')
+                  ->orWhere('Tipo', $empresa->Comunidad)
+                  ->orWhere('Tipo', $empresa->Localidad);
+        })
+        ->get();
+        $fiestassql = Evento::where('ano', '=', $fecha)
+        ->where(function ($query) use ($empresa) {
+            $query->where('Tipo', 'n')
+                  ->orWhere('Tipo', $empresa->Comunidad)
+                  ->orWhere('Tipo', $empresa->Localidad);
+        })
+        ->toSql();
         $fecha = $fecha;
-        $pdf = PDF::loadView('calendario.informe2', compact('fecha','fiestas','empresa'));
-        return $pdf->download('CalendarioLaboral2023.pdf');
+        $pdf = PDF::loadView('calendario.informe2', compact('fecha','fiestas','empresa','fiestassql'));
+        return $pdf->download($empresa->Empresa.'-'.$empresa->Centro.'.pdf');
         //return view("calendario/empresa", compact('empresa','ano','fiestas'));
     }
 

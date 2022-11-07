@@ -26,7 +26,7 @@
         <header class="py-3 border-bottom" style="">
             <div class="container-fluid d-flex flex-wrap justify-content-center" style='z-index:1'>
                 <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                    <img src="./assets/img/logoros.png" class="" height="60" alt="Grupo Asesor Ros">
+                    <img src="/img/logoros.png" class="" height="60" alt="Grupo Asesor Ros">
                 </a>
                 <ul class="nav ms-auto">
                     <li id="kxp-menu2" class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
