@@ -20,14 +20,14 @@ class calendario extends Component
      *
      * @return void
      */
-    public function __construct($month="", $fontsize="fs-5", $color="text-dark", $fondo="bg-white")
+    public function __construct($month="", $fontsize="fs-5", $color="text-dark", $fondo="bg-white", $mespanish="")
     {
         if ($month=="") {$month = date("Y-m");}
         $datos = $this->calendar_month($month);
         $mes = $datos['month'];
         // obtener mes en espanol
         $mespanish = $this->spanish_month($mes);
-        $mes = $datos['month'];
+        //$mes = $datos['month'];
 
         $this->mespanish = $mespanish;
         $this->mes = $mes;

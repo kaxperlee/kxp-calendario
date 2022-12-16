@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalLocalidad;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 
@@ -9,13 +10,14 @@ class EmpresaController extends Controller
 {
     public function index(){
         $empresas = Empresa::all();
-
-       return view("empresa/index", compact('empresas'));
+        //return $empresas->Comunidad;
+        return view("empresa/index", compact('empresas'));
     }
 
     public function create(){
 
-        return view("empresa/create");
+        $localidades = CalLocalidad::orderBy('Localidad','asc')->pluck('Localidad','id');
+        return view("empresa/create",compact('localidades'));
     }
     public function store(Request $request)
     {
@@ -24,29 +26,32 @@ class EmpresaController extends Controller
         $empresa->Domicilio = $request->Domicilio;
         $empresa->Actividad = $request->Actividad;
         $empresa->Convenio = $request->Convenio;
-        $empresa->Localidad = $request->Localidad;
-        $empresa->Comunidad = $request->Comunidad;
+        $empresa->localidad_id = $request->Localidad;
         $empresa->Centro = $request->Centro;
         $empresa->save();
         return redirect()->route('empresa.show', $empresa);
         //return $incidencia;
     }
 
-    public function show($id)
+    public function show( Empresa $empresa)
     {
-        $empresas = Empresa::find($id);
+        //$empresa = Empresa::find($empresa);
 
-        return view('empresa.show', compact('empresas'));
+        return view('empresa.show', compact('empresa'));
     }
-    public function edit($id){
-
-        $empresas = Empresa::find($id);
-
-        return view("empresa/edit", compact('empresas'));
+    public function edit(Empresa $empresa){
+        //return $empresa;
+        $localidades = CalLocalidad::orderBy('Localidad','asc')->pluck('Localidad','id');
+        return view("empresa/edit", compact('empresa','localidades'));
     }
 
-    public function update($id){
+    public function update(Request $request, Empresa $empresa){
 
-        return "Update";
+        //$empresa = Empresa::find($request->id);
+        //return $request->all();
+        $empresa->update(['Empresa' => $request->Empresa, 'Domicilio' => $request->Domicilio, 'Actividad' => $request->Actividad,
+        'Convenio' =>  $request->Convenio,'localidad_id' =>  $request->Localidad,'Centro' =>  $request->Centro]);
+        return redirect()->route('empresa.show',$empresa);
+        //return $empresa;
     }
 }

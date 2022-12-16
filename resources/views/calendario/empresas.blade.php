@@ -18,8 +18,8 @@
 @foreach ($empresas as $empresa)
     <tr>
         <td><a href="{{route('calendario.empresa',[$empresa,$ano])}}">{{$empresa->Empresa}}</a></td>
-        <td>{{$empresa->Localidad}}</td>
-        <td>{{$empresa->Comunidad}}</td>
+        <td>{{$empresa->Localidad->Localidad}}</td>
+        <td>{{$empresa->Localidad->Comunidad->Comunidad}}</td>
         <td>{{$empresa->Centro}}</td>
     </tr>
 @endforeach

@@ -15,15 +15,17 @@ class Calendariopdf extends Component
     public $fontsize;
     public $color;
     public $fondo;
+    public $localidad;
+    public $comunidad;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($month="", $fontsize="fs-5", $color="text-dark", $fondo="bg-white")
+    public function __construct($month="", $localidad="", $comunidad="")
     {
         if ($month=="") {$month = date("Y-m");}
-        $datos = $this->calendar_month($month);
+        $datos = $this->calendar_month($month,$localidad,$comunidad);
         $mes = $datos['month'];
         // obtener mes en espanol
         $mespanish = $this->spanish_month($mes);
@@ -33,14 +35,16 @@ class Calendariopdf extends Component
         $this->mes = $mes;
         $this->month = $month;
         $this->datos = $datos;
-        $this->fontsize = $fontsize;
-        $this->color = $color;
-        $this->fondo = $fondo;
+        $this->fontsize = 'fs-5';
+        $this->color = 'text-dark';
+        $this->fondo = 'bg-white';
+        $this->localidad = $localidad;
+        $this->comunidad = $comunidad;
     }
     public function index_month ()
     {
         $month = date("Y-m");
-        $datos = $this->calendar_month($month);
+        $datos = $this->calendar_month($month,"","");
         $mes = $datos['month'];
         // obtener mes en espanol
         $mespanish = $this->spanish_month($mes);
@@ -52,7 +56,7 @@ class Calendariopdf extends Component
         $this->month = $month;
         $this->datos = $datos;
     }
-    public static function calendar_month($month){
+    public static function calendar_month($month,$localidad,$comunidad){
         //$mes = date("Y-m");
         $mes = $month;
         //sacar el ultimo de dia del mes
@@ -117,7 +121,11 @@ class Calendariopdf extends Component
               if ($diaDeLaSemana == 0){$datanew['festivo'] = "domingo";}else{$datanew['festivo'] = "";}
               //if (Evento::where("fecha",$datafecha)->get()){$datanew['festivo2'] = "bg-warning";}else{$datanew['festivo2'] = "";}
               //echo "<h3>".$datanew['festivo2']."</h3>";
-              if ($festivo = Evento::where("fecha",$datafecha)->first()){
+              if ($festivo = Evento::where("fecha",$datafecha)->where(function ($query) use ($localidad,$comunidad) {
+                $query->Where('comunidad_id', $comunidad)
+                      ->orWhere('localidad_id', $localidad)
+                      ->orWhere('evento','n');
+            })->first()){
                 $festivo = $festivo->descripcion;}else {
                   $festivo = "";
                 }

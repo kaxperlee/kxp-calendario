@@ -41,6 +41,6 @@
         <td colspan="7" class='fs-5 py-1'>&nbsp;</td>
       </tr>
       @endif
-      
+
     </table>
 </div>

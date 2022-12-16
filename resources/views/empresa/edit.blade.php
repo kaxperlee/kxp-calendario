@@ -5,10 +5,10 @@
 @endsection
 @section('main')
 <x-cab1 texto="Empresas" />
-<x-cab2 texto="Editar empresa: " />
+<x-cab2 texto="Editar empresa: {{$empresa->Empresa}}" />
 
 <div class="px-3">
-    {!! Form::model($empresas,['route' => ['empresa.update',$empresas],'method'=>'put']) !!}
+    {!! Form::model($empresa,['route' => ['empresa.update',$empresa],'method'=>'put']) !!}
 
     <div class="container-fluid">
         <div class="row">
@@ -29,24 +29,25 @@
                 {!! Form::label('Convenio','Convenio:') !!}
                 {!! Form::text('Convenio',NULL,['class'=>'form-control']) !!}
             </div>
-            <div class="col-4 my-2">
+
+
+            <div class="col-6 my-2">
+                {!! Form::setModel($empresa['Localidad']) !!}
                 {!! Form::label('Localidad','Localidad:') !!}
-                {!! Form::text('Localidad',NULL,['class'=>'form-control']) !!}
+                {!! Form::select('Localidad',$localidades,$empresa->localidad_id,['class'=>'form-control','placeholder' => 'Selecciona una localidad' ]) !!}
             </div>
-            <div class="col-4 my-2">
-                {!! Form::label('Comunidad','Comunidad:') !!}
-                {!! Form::text('Comunidad',NULL,['class'=>'form-control']) !!}
-            </div>
-            <div class="col-4 my-2">
+            <div class="col-6 my-2">
+                {!! Form::setModel($empresa) !!}
                 {!! Form::label('Centro','Centro:') !!}
                 {!! Form::text('Centro',NULL,['class'=>'form-control']) !!}
             </div>
 
+
         </div>
     </div>
-    <div class="d-flex flex-row-reverse mt-3">
-        <button type="submit"  class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-ban"></i> Actualizar</button>
-        <a type="button" href="{{route('empresa.show', $empresas)}}" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-arrows-rotate"></i> Cancelar</a>
+    <div class="col my-2">
+        <button type="submit"  class="btn btn-primary me-2"><i class="fa-solid fa-ban"></i> Actualizar</button>
+        <a type="button" href="{{ROUTE('empresa.show',$empresa)}}" class="btn btn-primary me-2"><i class="fa-solid fa-arrows-rotate"></i> Cancelar</a>
     </div>
     {!! Form::close() !!}
     </div>

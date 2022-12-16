@@ -23,7 +23,7 @@
                 <td style='text-align:left;width:5%'>Empresa:</td>
                 <td style='text-align:left;width:65%;border-bottom:1px solid #ccc'><strong>{{$empresa->Empresa}}</strong></td>
                 <td style='text-align:left;width:5%'>Localidad:</td>
-                <td style='text-align:left;width:25%;border-bottom:1px solid #ccc'>{{strtoupper($empresa->Localidad)}}</td>
+                <td style='text-align:left;width:25%;border-bottom:1px solid #ccc'>{{strtoupper($empresa->Localidad->Localidad)}}</td>
             </tr>
             <tr>
                 <td colspan="1" style='text-align:left;width:5%'>Domicilio:</td>
@@ -40,45 +40,45 @@
         </table>
         <table class="HeadTable2" style='margin-top:20px;'>
             <tr>
-                <td style='padding:10px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-01" /></td>
-                <td style='padding:10px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-02" /></td>
-                <td style='padding:10px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-03" /></td>
-                <td style='padding:10px 0px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-04" /></td>
+                <td style='padding:10px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-01" /></td>
+                <td style='padding:10px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-02" /></td>
+                <td style='padding:10px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-03" /></td>
+                <td style='padding:10px 0px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-04" /></td>
             </tr>
             <tr>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-05" /></td>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-06" /></td>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-07" /></td>
-                <td style='padding:5px 0px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-08" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-05" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-06" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-07" /></td>
+                <td style='padding:5px 0px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-08" /></td>
             </tr>
             <tr>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-09" /></td>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-10" /></td>
-                <td style='padding:5px 10px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-11" /></td>
-                <td style='padding:5px 0px 5px 0px'><x-calendariopdf fontsize="fs-6" month="{{$fecha}}-12" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-09" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-10" /></td>
+                <td style='padding:5px 10px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-11" /></td>
+                <td style='padding:5px 0px 5px 0px'><x-calendariopdf localidad="{{$empresa->localidad_id}}" comunidad="{{$empresa->localidad->comunidad_id}}" month="{{$fecha}}-12" /></td>
             </tr>
         </table>
         <table style='width:100%;border: 1px solid #3a5e43; border-collapse: collapse;margin-top:20px;'>
             <tr>
-                <th colspan="2" class="ThCab"><span class="DiasCab">Fiestas {{$empresa->Comunidad}}</span></th>
+                <th colspan="2" class="ThCab"><span class="DiasCab">Fiestas {{$empresa->Localidad->Comunidad->Comunidad}}</span></th>
                 <th class="ThCab"><span class="DiasCab2">Fiestas locales</span></th>
             </tr>
             <tr>
-                <td>
+                <td valign="top">
                     @foreach ($fiestas as $fiesta)
-                        @if  ($fiesta->columna == 1)
+                        @if  ($fiesta->columna == 1 and $loop->iteration <= $loop->count/2)
+                            <div id="dias">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
+                        @endif
+                    @endforeach
+                </td>
+                <td valign="top">
+                    @foreach ($fiestas as $fiesta)
+                        @if  ($fiesta->columna == 1 and $loop->iteration > $loop->count/2)
                         <div id="dias">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
                         @endif
                     @endforeach
                 </td>
-                <td>
-                    @foreach ($fiestas as $fiesta)
-                        @if  ($fiesta->columna == 2)
-                        <div id="dias">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
-                        @endif
-                    @endforeach
-                </td>
-                <td id="margenlocal">
+                <td id="margenlocal" valign="top">
                     @foreach ($fiestas as $fiesta)
                     @if  ($fiesta->columna == 3)
                     <div id="dias2">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
@@ -90,9 +90,9 @@
         <table style='margin-top:20px;' width="100%">
             <tr>
                 <td width="75">Observaciones: </td>
-                <td style='text-align:right' width="25">{{$empresa->Localidad}}, a 1 de enero de {{$fecha}}</td>
+                <td style='text-align:right' width="25">{{$empresa->Localidad->Localidad}}, a 1 de enero de {{$fecha}}</td>
             </tr>
-            
+
         </table>
     </div>
 </body>

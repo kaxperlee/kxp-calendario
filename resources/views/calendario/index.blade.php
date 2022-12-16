@@ -28,40 +28,40 @@
 <div class="container-fluid mb-5">
     <div class="row">
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-01" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-01" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-02" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-02" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-03" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-03" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-04" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-04" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-05" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-05" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-06" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-06" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-07" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-07" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-08" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-08" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-09" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-09" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-10" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-10" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-11" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-11" />
         </div>
         <div class="col-3">
-            <x-calendario fontsize="fs-6" month="{{$fecha}}-12" />
+            <x-cal fontsize="fs-6" month="{{$fecha}}-12" />
         </div>
     </div>
 

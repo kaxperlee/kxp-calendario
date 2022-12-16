@@ -2,6 +2,9 @@
 
 namespace App\View\Components;
 
+
+use App\Models\CalLocalidad;
+use App\Models\Evento;
 use Illuminate\View\Component;
 
 class SbCalendario extends Component
@@ -11,6 +14,9 @@ class SbCalendario extends Component
     public $fecha2;
     public $fecha3;
     public $fecha4;
+    public $eventos;
+    public $comunidades;
+
     /**
      * Create a new component instance.
      *
@@ -18,6 +24,8 @@ class SbCalendario extends Component
      */
     public function __construct()
     {
+        $this->eventos = Evento::select('ano')->groupBy('ano')->get();
+        $this->comunidades = CalLocalidad::groupBy('comunidad_id')->get();
         $this->year = date("Y");
         $this->fecha['date'] = date("Y-m");
         $this->fecha['nombre'] = $this->spanish_month(date("M", strtotime( $this->fecha['date'])))." ".date("Y",strtotime($this->fecha['date']));
@@ -27,8 +35,9 @@ class SbCalendario extends Component
         $this->fecha3['nombre'] = $this->spanish_month(date("M", strtotime( $this->fecha3['date'])))." ".date("Y",strtotime($this->fecha3['date']));
         $this->fecha4['date'] = date("Y-m",strtotime($this->fecha['date']."- 2 month"));
         $this->fecha4['nombre'] = $this->spanish_month(date("M", strtotime( $this->fecha4['date'])))." ".date("Y",strtotime($this->fecha4['date']));
-        
-       
+
+
+
 
         //echo "<h3>Holassss</h3>";
     }
