@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 
 use App\Models\CalLocalidad;
+use App\Models\Empresa;
 use App\Models\Evento;
 use Illuminate\View\Component;
 
@@ -16,6 +17,8 @@ class SbCalendario extends Component
     public $fecha4;
     public $eventos;
     public $comunidades;
+    public $empresas;
+
 
     /**
      * Create a new component instance.
@@ -26,6 +29,7 @@ class SbCalendario extends Component
     {
         $this->eventos = Evento::select('ano')->groupBy('ano')->get();
         $this->comunidades = CalLocalidad::groupBy('comunidad_id')->get();
+        $this->empresas = Empresa::select('id')->count();
         $this->year = date("Y");
         $this->fecha['date'] = date("Y-m");
         $this->fecha['nombre'] = $this->spanish_month(date("M", strtotime( $this->fecha['date'])))." ".date("Y",strtotime($this->fecha['date']));

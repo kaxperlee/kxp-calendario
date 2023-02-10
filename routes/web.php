@@ -4,6 +4,7 @@ use App\Http\Controllers\CalComunidadController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LocalidadController;
 use App\Models\CalComunidad;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::get('/calendario/empresas/{fecha}', [CalendarioController::class, 'empres
 Route::get('/calendario/empresas/{id}/{fecha}', [CalendarioController::class, 'empresa'])->name('calendario.empresa');
 Route::get('/calendario/{fecha}', [CalendarioController::class, 'show'])->name('calendario.show');
 
+Route::get('/horario', [HorarioController::class, 'index'])->name('horario.index');
 
 Route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index');
 Route::get('/empresa/create', [EmpresaController::class, 'create'])->name('empresa.create');

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class EmpresaController extends Controller
 {
     public function index(){
-        $empresas = Empresa::all();
+        $empresas = Empresa::orderBy('Empresa')->get();
         //return $empresas->Comunidad;
         return view("empresa/index", compact('empresas'));
     }

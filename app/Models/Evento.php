@@ -32,4 +32,8 @@ class Evento extends Model
     public function comunidad(){
         return $this->belongsTo(CalComunidad::class);
     }
+
+    public function fecha(){
+        return $this->belongsTo(Fecha::class);
+    }
 }

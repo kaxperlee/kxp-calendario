@@ -11,7 +11,7 @@ class CalLocalidad extends Model
 
     protected $fillable = [
         'id_comunidad',
-        'localidad',
+        'Localidad',
     ];
 
     public function comunidad(){

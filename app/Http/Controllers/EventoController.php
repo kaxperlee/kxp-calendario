@@ -44,7 +44,7 @@ class EventoController extends Controller
         else{
             $evento->descripcion = "local";
             $evento->localidad_id = $request->localidad_id;
-            $evento->columna = 3;
+            $evento->columna = 2;
         }
         $evento->ano = date('Y',strtotime($request->fecha));
         $evento->dia = date('d',strtotime($request->fecha));

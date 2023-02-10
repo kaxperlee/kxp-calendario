@@ -59,12 +59,14 @@ class CalendarioController extends Controller
 
     public function empresa($id,$fecha){
         $empresa = Empresa::find($id);
-        //$fiestas = Evento::where('Tipo','n')->orwhere('Tipo',$empresa->Localidad)->orwhere('Tipo',$empresa->Comunidad)->where('ano',$fecha)->get();
-        $fiestas = Evento::where('ano', '=', $fecha)
+        $fiestasc = Evento::where('ano', '=', $fecha)
         ->where(function ($query) use ($empresa) {
             $query->Where('comunidad_id', $empresa->localidad->comunidad_id)
-                  ->orWhere('localidad_id', $empresa->localidad_id)
                   ->orWhere('Evento', 'n');
+        })->orderBy('fecha')->get();
+        $fiestasl = Evento::where('ano', '=', $fecha)
+        ->where(function ($query) use ($empresa) {
+            $query->Where('localidad_id', $empresa->localidad_id);
         })->orderBy('fecha')->get();
         /*$fiestassql = Evento::where('ano', '=', $fecha)
         ->where(function ($query) use ($empresa) {
@@ -75,7 +77,7 @@ class CalendarioController extends Controller
         ->toSql();*/
         $fecha = $fecha;
 
-        $pdf = PDF::loadView('calendario.informe2', compact('fecha','fiestas','empresa'));
+        $pdf = PDF::loadView('calendario.informe2', compact('fecha','fiestasc','fiestasl','empresa'));
         return $pdf->download($empresa->Empresa.'-'.$empresa->Centro.'.pdf');
         //return view("calendario/empresa", compact('empresa','ano','fiestas'));
     }

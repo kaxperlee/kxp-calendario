@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-<x-cab1 texto="Empresas" />
+<x-cab1 texto="Empresas: {{$empresas->count();}}" />
 <x-cab2 texto="Listado de empresas" />
 <table class="table">
     <tr>

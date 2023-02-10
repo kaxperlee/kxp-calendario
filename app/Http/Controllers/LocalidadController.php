@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CalComunidad;
 use App\Models\CalLocalidad;
+use COM;
 use Illuminate\Http\Request;
 
 class LocalidadController extends Controller
@@ -47,15 +48,12 @@ class LocalidadController extends Controller
         $localidad->Localidad = $request->Localidad;
         $localidad->save();
         //return $evento;
-        return redirect()->route('localidad.index', $localidad);
+        return redirect()->route('localidad.index', $localidad->comunidad_id);
     }
-    public function update(Request $request, $localidad)
+    public function update(Request $request, CalLocalidad $localidad)
     {
-        //return $request->Localidad;
-        CalLocalidad::find($localidad)->update(['Localidad' => 'Elchess']);
+        $localidad->update(['Localidad' => $request->Localidad, 'comunidad_id' => $request->Comunidad]);
 
-        //$localidad = $CalLocalidad;
-        //return $localidad;
-        return redirect()->route('localidad.index', $localidad);
+        return redirect()->route('localidad.show', $localidad);
     }
 }

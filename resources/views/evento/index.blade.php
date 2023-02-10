@@ -47,7 +47,7 @@
 <table class="table">
     <tr>
         <th>Evento</th>
-        <th>Tipo</th>
+        <th>Fiesta</th>
         <th>Fecha</th>
 
     </tr>

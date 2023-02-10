@@ -30,7 +30,8 @@
                 </a>
                 <ul class="nav ms-auto">
                     <li id="kxp-menu2" class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-                    <li id="kxp-menu2" class="nav-item"><a href="#" class="nav-link link-dark px-2">Calendarios</a></li>
+                    <li id="kxp-menu2" class="nav-item"><a href="{{route('calendario.index')}}" class="nav-link link-dark px-2">Calendarios</a></li>
+                    <li id="kxp-menu2" class="nav-item"><a href="{{route('horario.index')}}" class="nav-link link-dark px-2">Horarios</a></li>
                 </ul>
             </div>
 

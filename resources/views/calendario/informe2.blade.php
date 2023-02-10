@@ -65,23 +65,23 @@
             </tr>
             <tr>
                 <td valign="top">
-                    @foreach ($fiestas as $fiesta)
-                        @if  ($fiesta->columna == 1 and $loop->iteration <= $loop->count/2)
-                            <div id="dias">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
+                    @foreach ($fiestasc as $fiestac)
+                        @if  ($fiestac->columna == 1 and $loop->iteration <= $loop->count/2)
+                            <div id="dias">{{date('d',strtotime($fiestac->fecha))}} {{$fiestac->mes}} <span id="diasmes">{{$fiestac->nombre}}</span></div>
                         @endif
                     @endforeach
                 </td>
                 <td valign="top">
-                    @foreach ($fiestas as $fiesta)
-                        @if  ($fiesta->columna == 1 and $loop->iteration > $loop->count/2)
-                        <div id="dias">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
+                    @foreach ($fiestasc as $fiestac)
+                        @if  ($fiestac->columna == 1 and $loop->iteration > $loop->count/2)
+                        <div id="dias">{{date('d',strtotime($fiestac->fecha))}} {{$fiestac->mes}} <span id="diasmes">{{$fiestac->nombre}}</span></div>
                         @endif
                     @endforeach
                 </td>
                 <td id="margenlocal" valign="top">
-                    @foreach ($fiestas as $fiesta)
-                    @if  ($fiesta->columna == 3)
-                    <div id="dias2">{{date('d',strtotime($fiesta->fecha))}} {{$fiesta->mes}} <span id="diasmes">{{$fiesta->nombre}}</span></div>
+                    @foreach ($fiestasl as $fiestal)
+                    @if  ($fiestal->columna == 2)
+                    <div id="dias2">{{date('d',strtotime($fiestal->fecha))}} {{$fiestal->mes}} <span id="diasmes">{{$fiestal->nombre}}</span></div>
                     @endif
                     @endforeach
                 </td>
